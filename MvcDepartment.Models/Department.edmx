@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Department.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DepartmentStoreContainer">
+    <EntitySet Name="UserAccountSet" EntityType="Department.Store.UserAccountSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DisciplineSet" EntityType="Department.Store.DisciplineSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SpecialtySet" EntityType="Department.Store.SpecialtySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PlanSet" EntityType="Department.Store.PlanSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GroupSet" EntityType="Department.Store.GroupSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScheduleSet" EntityType="Department.Store.ScheduleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScheduleWeekSet" EntityType="Department.Store.ScheduleWeekSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PlanSpecialty" Association="Department.Store.PlanSpecialty">
+      <End Role="Plan" EntitySet="PlanSet" />
+      <End Role="Specialty" EntitySet="SpecialtySet" />
+    </AssociationSet>
+    <AssociationSet Name="ScheduleScheduleWeek" Association="Department.Store.ScheduleScheduleWeek">
+      <End Role="Schedule" EntitySet="ScheduleSet" />
+      <End Role="ScheduleWeek" EntitySet="ScheduleWeekSet" />
+    </AssociationSet>
+    <AssociationSet Name="SpecialtyGroup" Association="Department.Store.SpecialtyGroup">
+      <End Role="Specialty" EntitySet="SpecialtySet" />
+      <End Role="Group" EntitySet="GroupSet" />
+    </AssociationSet>
+    <AssociationSet Name="ScheduleGroup" Association="Department.Store.ScheduleGroup">
+      <End Role="Schedule" EntitySet="ScheduleSet" />
+      <End Role="Group" EntitySet="GroupSet" />
+    </AssociationSet>
+    <AssociationSet Name="ScheduleDiscipline" Association="Department.Store.ScheduleDiscipline">
+      <End Role="Schedule" EntitySet="ScheduleSet" />
+      <End Role="Discipline" EntitySet="DisciplineSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserAccountSchedule" Association="Department.Store.UserAccountSchedule">
+      <End Role="UserAccount" EntitySet="UserAccountSet" />
+      <End Role="Schedule" EntitySet="ScheduleSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserAccountSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DisciplineSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecialtySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GlobalId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlanSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="File" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Specialty_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Course" Type="int" Nullable="false" />
+    <Property Name="Specialty_Id" Type="int" Nullable="false" />
+    <Property Name="Schedule_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ScheduleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Term" Type="int" Nullable="false" />
+    <Property Name="LecturesSum" Type="int" Nullable="false" />
+    <Property Name="LabsSum" Type="int" Nullable="false" />
+    <Property Name="PracticesSum" Type="int" Nullable="false" />
+    <Property Name="ExamWorksSum" Type="int" Nullable="false" />
+    <Property Name="Classroom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Discipline_Id" Type="int" Nullable="false" />
+    <Property Name="UserAccount_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScheduleWeekSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lectures" Type="int" Nullable="false" />
+    <Property Name="Labs" Type="int" Nullable="false" />
+    <Property Name="Practices" Type="int" Nullable="false" />
+    <Property Name="ExamWorks" Type="int" Nullable="false" />
+    <Property Name="WeekNumber" Type="int" Nullable="false" />
+    <Property Name="Schedule_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PlanSpecialty">
+    <End Role="Plan" Type="Department.Store.PlanSet" Multiplicity="*" />
+    <End Role="Specialty" Type="Department.Store.SpecialtySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="Specialty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Plan">
+        <PropertyRef Name="Specialty_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ScheduleScheduleWeek">
+    <End Role="Schedule" Type="Department.Store.ScheduleSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ScheduleWeek" Type="Department.Store.ScheduleWeekSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScheduleWeek">
+        <PropertyRef Name="Schedule_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SpecialtyGroup">
+    <End Role="Specialty" Type="Department.Store.SpecialtySet" Multiplicity="1" />
+    <End Role="Group" Type="Department.Store.GroupSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="Specialty_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ScheduleGroup">
+    <End Role="Schedule" Type="Department.Store.ScheduleSet" Multiplicity="0..1" />
+    <End Role="Group" Type="Department.Store.GroupSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="Schedule_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ScheduleDiscipline">
+    <End Role="Schedule" Type="Department.Store.ScheduleSet" Multiplicity="*" />
+    <End Role="Discipline" Type="Department.Store.DisciplineSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Discipline_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserAccountSchedule">
+    <End Role="UserAccount" Type="Department.Store.UserAccountSet" Multiplicity="1" />
+    <End Role="Schedule" Type="Department.Store.ScheduleSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="UserAccount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Department" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="UserAccountSet" EntityType="Department.UserAccount" />
+          <EntitySet Name="DisciplineSet" EntityType="Department.Discipline" />
+          <EntitySet Name="SpecialtySet" EntityType="Department.Specialty" />
+          <EntitySet Name="PlanSet" EntityType="Department.Plan" />
+          <AssociationSet Name="PlanSpecialty" Association="Department.PlanSpecialty">
+            <End Role="Plan" EntitySet="PlanSet" />
+            <End Role="Specialty" EntitySet="SpecialtySet" />
+          </AssociationSet>
+          <EntitySet Name="GroupSet" EntityType="Department.Group" />
+          <EntitySet Name="ScheduleSet" EntityType="Department.Schedule" />
+          <EntitySet Name="ScheduleWeekSet" EntityType="Department.ScheduleWeek" />
+          <AssociationSet Name="ScheduleScheduleWeek" Association="Department.ScheduleScheduleWeek">
+            <End Role="Schedule" EntitySet="ScheduleSet" />
+            <End Role="ScheduleWeek" EntitySet="ScheduleWeekSet" />
+          </AssociationSet>
+          <AssociationSet Name="SpecialtyGroup" Association="Department.SpecialtyGroup">
+            <End Role="Specialty" EntitySet="SpecialtySet" />
+            <End Role="Group" EntitySet="GroupSet" />
+          </AssociationSet>
+          <AssociationSet Name="ScheduleGroup" Association="Department.ScheduleGroup">
+            <End Role="Schedule" EntitySet="ScheduleSet" />
+            <End Role="Group" EntitySet="GroupSet" />
+          </AssociationSet>
+          <AssociationSet Name="ScheduleDiscipline" Association="Department.ScheduleDiscipline">
+            <End Role="Schedule" EntitySet="ScheduleSet" />
+            <End Role="Discipline" EntitySet="DisciplineSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserAccountSchedule" Association="Department.UserAccountSchedule">
+            <End Role="UserAccount" EntitySet="UserAccountSet" />
+            <End Role="Schedule" EntitySet="ScheduleSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="UserAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="true" />
+          <Property Type="String" Name="Login" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Department.UserAccountSchedule" FromRole="UserAccount" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Discipline">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Department.ScheduleDiscipline" FromRole="Discipline" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Specialty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GlobalId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Plan" Relationship="Department.PlanSpecialty" FromRole="Specialty" ToRole="Plan" />
+          <NavigationProperty Name="Group" Relationship="Department.SpecialtyGroup" FromRole="Specialty" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Specialty" Relationship="Department.PlanSpecialty" FromRole="Plan" ToRole="Specialty" />
+          <Property Type="String" Name="File" Nullable="false" />
+        </EntityType>
+        <Association Name="PlanSpecialty">
+          <End Type="Department.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="Department.Specialty" Role="Specialty" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+        </Association>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="Int32" Name="Course" Nullable="false" />
+          <NavigationProperty Name="Specialty" Relationship="Department.SpecialtyGroup" FromRole="Group" ToRole="Specialty" />
+          <NavigationProperty Name="Schedule" Relationship="Department.ScheduleGroup" FromRole="Group" ToRole="Schedule" />
+        </EntityType>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Term" Nullable="false" />
+          <Property Type="Int32" Name="LecturesSum" Nullable="false" />
+          <Property Type="Int32" Name="LabsSum" Nullable="false" />
+          <Property Type="Int32" Name="PracticesSum" Nullable="false" />
+          <Property Type="Int32" Name="ExamWorksSum" Nullable="false" />
+          <NavigationProperty Name="ScheduleWeek" Relationship="Department.ScheduleScheduleWeek" FromRole="Schedule" ToRole="ScheduleWeek" />
+          <NavigationProperty Name="Group" Relationship="Department.ScheduleGroup" FromRole="Schedule" ToRole="Group" />
+          <NavigationProperty Name="Discipline" Relationship="Department.ScheduleDiscipline" FromRole="Schedule" ToRole="Discipline" />
+          <Property Type="String" Name="Classroom" Nullable="false" />
+          <NavigationProperty Name="UserAccount" Relationship="Department.UserAccountSchedule" FromRole="Schedule" ToRole="UserAccount" />
+        </EntityType>
+        <EntityType Name="ScheduleWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Type="Int32" Name="Lectures" Nullable="false" />
+          <Property Type="Int32" Name="Labs" Nullable="false" />
+          <Property Type="Int32" Name="Practices" Nullable="false" />
+          <Property Type="Int32" Name="ExamWorks" Nullable="false" />
+          <Property Type="Int32" Name="WeekNumber" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Department.ScheduleScheduleWeek" FromRole="ScheduleWeek" ToRole="Schedule" />
+        </EntityType>
+        <Association Name="ScheduleScheduleWeek">
+          <End Type="Department.Schedule" Role="Schedule" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Department.ScheduleWeek" Role="ScheduleWeek" Multiplicity="*" />
+        </Association>
+        <Association Name="SpecialtyGroup">
+          <End Type="Department.Specialty" Role="Specialty" Multiplicity="1" />
+          <End Type="Department.Group" Role="Group" Multiplicity="*" />
+        </Association>
+        <Association Name="ScheduleGroup">
+          <End Type="Department.Schedule" Role="Schedule" Multiplicity="0..1" />
+          <End Type="Department.Group" Role="Group" Multiplicity="*" />
+        </Association>
+        <Association Name="ScheduleDiscipline">
+          <End Type="Department.Schedule" Role="Schedule" Multiplicity="*" />
+          <End Type="Department.Discipline" Role="Discipline" Multiplicity="1" />
+        </Association>
+        <Association Name="UserAccountSchedule">
+          <End Type="Department.UserAccount" Role="UserAccount" Multiplicity="1" />
+          <End Type="Department.Schedule" Role="Schedule" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DepartmentStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="UserAccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.UserAccount)">
+        <MappingFragment StoreEntitySet="UserAccountSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisciplineSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.Discipline)">
+        <MappingFragment StoreEntitySet="DisciplineSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecialtySet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.Specialty)">
+        <MappingFragment StoreEntitySet="SpecialtySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GlobalId" ColumnName="GlobalId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlanSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.Plan)">
+        <MappingFragment StoreEntitySet="PlanSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="File" ColumnName="File" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.Group)">
+        <MappingFragment StoreEntitySet="GroupSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.Schedule)">
+        <MappingFragment StoreEntitySet="ScheduleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Term" ColumnName="Term" />
+          <ScalarProperty Name="LecturesSum" ColumnName="LecturesSum" />
+          <ScalarProperty Name="LabsSum" ColumnName="LabsSum" />
+          <ScalarProperty Name="PracticesSum" ColumnName="PracticesSum" />
+          <ScalarProperty Name="ExamWorksSum" ColumnName="ExamWorksSum" />
+          <ScalarProperty Name="Classroom" ColumnName="Classroom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScheduleWeekSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Department.ScheduleWeek)">
+        <MappingFragment StoreEntitySet="ScheduleWeekSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lectures" ColumnName="Lectures" />
+          <ScalarProperty Name="Labs" ColumnName="Labs" />
+          <ScalarProperty Name="Practices" ColumnName="Practices" />
+          <ScalarProperty Name="ExamWorks" ColumnName="ExamWorks" />
+          <ScalarProperty Name="WeekNumber" ColumnName="WeekNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PlanSpecialty" TypeName="Department.PlanSpecialty" StoreEntitySet="PlanSet">
+      <EndProperty Name="Specialty">
+        <ScalarProperty Name="Id" ColumnName="Specialty_Id" />
+      </EndProperty>
+      <EndProperty Name="Plan">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ScheduleScheduleWeek" TypeName="Department.ScheduleScheduleWeek" StoreEntitySet="ScheduleWeekSet">
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="Id" ColumnName="Schedule_Id" />
+      </EndProperty>
+      <EndProperty Name="ScheduleWeek">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SpecialtyGroup" TypeName="Department.SpecialtyGroup" StoreEntitySet="GroupSet">
+      <EndProperty Name="Specialty">
+        <ScalarProperty Name="Id" ColumnName="Specialty_Id" />
+      </EndProperty>
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ScheduleGroup" TypeName="Department.ScheduleGroup" StoreEntitySet="GroupSet">
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="Id" ColumnName="Schedule_Id" />
+      </EndProperty>
+      <EndProperty Name="Group">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Schedule_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ScheduleDiscipline" TypeName="Department.ScheduleDiscipline" StoreEntitySet="ScheduleSet">
+      <EndProperty Name="Discipline">
+        <ScalarProperty Name="Id" ColumnName="Discipline_Id" />
+      </EndProperty>
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserAccountSchedule" TypeName="Department.UserAccountSchedule" StoreEntitySet="ScheduleSet">
+      <EndProperty Name="UserAccount">
+        <ScalarProperty Name="Id" ColumnName="UserAccount_Id" />
+      </EndProperty>
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

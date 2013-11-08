@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cfa0bd380d31463f997dcaf596c46820" Name="Diagram1">
+        <EntityTypeShape EntityType="Department.UserAccount" Width="1.5" PointX="4.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Department.Discipline" Width="1.5" PointX="2.75" PointY="3.5" />
+        <EntityTypeShape EntityType="Department.Specialty" Width="1.5" PointX="2.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Department.Plan" Width="1.5" PointX="4.875" PointY="1.25" />
+        <AssociationConnector Association="Department.PlanSpecialty" />
+        <EntityTypeShape EntityType="Department.Group" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Department.Schedule" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="Department.ScheduleWeek" Width="1.5" PointX="2.75" PointY="5.875" />
+        <AssociationConnector Association="Department.ScheduleScheduleWeek" />
+        <AssociationConnector Association="Department.SpecialtyGroup" />
+        <AssociationConnector Association="Department.ScheduleGroup" />
+        <AssociationConnector Association="Department.ScheduleDiscipline" />
+        <AssociationConnector Association="Department.UserAccountSchedule" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

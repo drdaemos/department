@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+@{
+    if(User.Identity.IsAuthenticated)
+    {
+        <p>You're logged in as</p>
+        if(User.IsInRole("Admin")) { <p>Administrator</p> }
+        if(User.IsInRole("Teacher")) { <p>Teacher</p> }
+    } else
+    {
+        <p>Please login!</p>
+    }
+}
