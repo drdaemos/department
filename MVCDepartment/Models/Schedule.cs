@@ -7,10 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace MVCDepartment.Models
 {
     using System;
     using System.Collections.Generic;
+
+    public enum Term
+    {
+        Зимний,
+        Летний,
+    }
     
     public partial class Schedule
     {
@@ -19,18 +29,34 @@ namespace MVCDepartment.Models
             this.ScheduleWeek = new HashSet<ScheduleWeek>();
             this.Group = new HashSet<Group>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Нужно указать семестр")]
+        [Range(1, 2,
+            ErrorMessage = "Укажите семестр (1 - осенний, 2 - весенний)")]
+        [DisplayName("Семестр")]
         public int Term { get; set; }
+        [ScaffoldColumn(false)]
         public int LecturesSum { get; set; }
+        [ScaffoldColumn(false)]
         public int LabsSum { get; set; }
+        [ScaffoldColumn(false)]
         public int PracticesSum { get; set; }
+        [ScaffoldColumn(false)]
         public int ExamWorksSum { get; set; }
+        [DisplayName("Аудитория")]
         public string Classroom { get; set; }
     
         public virtual ICollection<ScheduleWeek> ScheduleWeek { get; set; }
         public virtual ICollection<Group> Group { get; set; }
         public virtual Discipline Discipline { get; set; }
         public virtual UserAccount UserAccount { get; set; }
+    }
+    public class ScheduleViewModel
+    {
+        public Schedule Schedule { get; set; }
+        public IEnumerable<SelectListItem> Disciplines { get; set; }
     }
 }

@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace MVCDepartment.Models
 {
     using System;
@@ -18,9 +21,14 @@ namespace MVCDepartment.Models
         {
             this.Group = new HashSet<Group>();
         }
-    
+
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+         
+        [DisplayName("Шифр")]
         public string GlobalId { get; set; }
+
+        [DisplayName("Название")]
         public string Name { get; set; }
     
         public virtual Plan Plan { get; set; }

@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace MVCDepartment.Models
 {
     using System;
@@ -19,7 +22,9 @@ namespace MVCDepartment.Models
             this.Schedule = new HashSet<Schedule>();
         }
     
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+        [DisplayName("Название предмета")]
         public string Name { get; set; }
     
         public virtual ICollection<Schedule> Schedule { get; set; }

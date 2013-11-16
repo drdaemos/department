@@ -17,6 +17,8 @@
         <p>You're logged in as</p>
         if(User.IsInRole("Admin")) { <p>Administrator</p> }
         if(User.IsInRole("Teacher")) { <p>Teacher</p> }
+                                                      
+        @Html.ActionLink("View Schedules", "Index", "Schedule")                                            
     } else
     {
         <p>Please login!</p>

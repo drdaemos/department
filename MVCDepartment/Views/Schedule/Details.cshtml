@@ -1,0 +1,57 @@
+﻿@model MVCDepartment.Models.Schedule
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Schedule</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Term)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Term)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LecturesSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LecturesSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LabsSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LabsSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PracticesSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PracticesSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExamWorksSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExamWorksSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Classroom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Classroom)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

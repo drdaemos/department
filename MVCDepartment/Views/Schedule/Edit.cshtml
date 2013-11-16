@@ -1,0 +1,77 @@
+﻿@model MVCDepartment.Models.Schedule
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Schedule</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Term)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Term)
+            @Html.ValidationMessageFor(model => model.Term)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LecturesSum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LecturesSum)
+            @Html.ValidationMessageFor(model => model.LecturesSum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LabsSum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LabsSum)
+            @Html.ValidationMessageFor(model => model.LabsSum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PracticesSum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PracticesSum)
+            @Html.ValidationMessageFor(model => model.PracticesSum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ExamWorksSum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ExamWorksSum)
+            @Html.ValidationMessageFor(model => model.ExamWorksSum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Classroom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Classroom)
+            @Html.ValidationMessageFor(model => model.Classroom)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -15,6 +15,7 @@ namespace MVCDepartment.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
@@ -22,6 +23,7 @@ namespace MVCDepartment.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

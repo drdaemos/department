@@ -1,0 +1,60 @@
+﻿@model MVCDepartment.Models.Schedule
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Schedule</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Term)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Term)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LecturesSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LecturesSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LabsSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LabsSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PracticesSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PracticesSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExamWorksSum)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExamWorksSum)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Classroom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Classroom)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

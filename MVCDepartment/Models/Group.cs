@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace MVCDepartment.Models
 {
     using System;
@@ -14,8 +17,13 @@ namespace MVCDepartment.Models
     
     public partial class Group
     {
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
+        [DisplayName("Шифр")]
         public string Name { get; set; }
+        [DisplayName("Курс")]
+        [Range(1, 6,
+            ErrorMessage = "Номер курса от 1 до 6")]
         public int Course { get; set; }
     
         public virtual Specialty Specialty { get; set; }
