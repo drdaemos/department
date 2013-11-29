@@ -200,6 +200,8 @@
     <Compile Include="Models\ScheduleWeek.cs" />
     <Compile Include="Models\Specialty.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Other\NotFoundException.cs" />
+    <Compile Include="Other\Parser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
