@@ -204,6 +204,9 @@
     <Compile Include="Models\Specialty.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Parser\AbstuctParser.cs" />
+    <Compile Include="Parser\Exceptions\CellNotFoundException.cs" />
+    <Compile Include="Parser\Exceptions\fileReaderException.cs" />
+    <Compile Include="Parser\Exceptions\SheetNotFoundException.cs" />
     <Compile Include="Parser\FileReader.cs" />
     <Compile Include="Parser\Interface\IFileReader.cs" />
     <Compile Include="Parser\DataClasses\CellPosition.cs" />

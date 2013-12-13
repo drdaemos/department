@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MVCDepartment.Parser; 
+using MVCDepartment.Parser;
+using MVCDepartment.Parser.Exceptions; 
 
 namespace MVCDepartment.Parser
 {
@@ -58,7 +59,12 @@ namespace MVCDepartment.Parser
             {
                 readResult = fileReader.getInfo(positions);
             }
-            catch
+            catch (Exception ex)
+            {
+                throw new fileReaderException(ex.Message, ex); 
+            }
+            
+            /* catch
             {
                 if (positions != null)
                 {
@@ -72,7 +78,7 @@ namespace MVCDepartment.Parser
                 {
                     readResult.Add(DefultVal);
                 }
-            }
+            } */
             List<ParseResult<ResInfoType>> retList = new List<ParseResult<ResInfoType>>(readResult.Count);
             var index = resultsInfo.First; 
             foreach (string result in readResult)
