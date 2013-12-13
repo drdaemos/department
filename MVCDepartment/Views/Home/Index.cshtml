@@ -18,7 +18,9 @@
         if(User.IsInRole("Admin")) { <p>Administrator</p> }
         if(User.IsInRole("Teacher")) { <p>Teacher</p> }
                                                       
-        @Html.ActionLink("View Schedules", "Index", "Schedule")                                            
+        @Html.ActionLink("View Schedules", "Index", "Schedule"); 
+        <br />      
+        @Html.ActionLink("Parse shedules from purcer", "Index", "Download");                                       
     } else
     {
         <p>Please login!</p>
