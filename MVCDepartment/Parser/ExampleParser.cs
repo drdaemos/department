@@ -6,7 +6,7 @@ using MVCDepartment.Parser;
 
 namespace MVCDepartment.Parser
 {
-    public class ExampleParser<A,B> : AbstuctParser<CellPosition, string>
+    public class ExampleParser : AbstuctParser<CellPosition, string>
     {
         public ExampleParser(IFileReader<CellPosition> fileReader) : base(fileReader)
         {

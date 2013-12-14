@@ -11,14 +11,5 @@ namespace MVCDepartment.Parser.Exceptions
             : base(sheetName)
         {
         }
-<<<<<<< HEAD
-=======
-
-        public SheetNotFoundException()
-            : base()
-        {
-        }
-
->>>>>>> b42533f517128efb308bbb43b3de66a163c257f5
     }
 }

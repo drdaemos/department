@@ -41,7 +41,7 @@ namespace MVCDepartment.Parser
 
         public List<string> getInfo(LinkedList<CellPosition> positions)
         {
-            List<string> retValues = new List<string>(positions.Count()); 
+            var retValues = new List<string>(positions.Count()); 
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(filePath, false))
             {
                 WorkbookPart wbPart = document.WorkbookPart;

@@ -19,11 +19,7 @@ namespace MVCDepartment.Parser
                 {
                     throw new NullReferenceException("sheetName cannot be null");
                 }
-<<<<<<< HEAD
                 SheetName = value;
-=======
-                    SheetName = value;
->>>>>>> b42533f517128efb308bbb43b3de66a163c257f5
             }
         }
         public string AddressName
