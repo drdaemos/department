@@ -8,6 +8,6 @@ namespace MVCDepartment.Parser
 {
     public interface IParseResultSaver<T>
     {
-        bool commit(List<T> parseResults); 
+        bool Commit(List<T> parseResults); 
     }
 }

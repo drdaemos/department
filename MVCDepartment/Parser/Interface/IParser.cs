@@ -9,6 +9,6 @@ namespace MVCDepartment.Parser
     public interface IParser<T>
     {
        // IParser(IFileReader<T> fileReader); 
-        List<T> getParseResults(); 
+        List<T> GetParseResults(); 
     }
 }

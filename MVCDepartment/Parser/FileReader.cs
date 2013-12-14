@@ -23,15 +23,15 @@ namespace MVCDepartment.Parser
             this.filePath = filePath; 
         }
 
-        private Cell getCell(CellPosition position, WorkbookPart wbPart)
+        private Cell GetCell(CellPosition position, WorkbookPart wbPart)
         {
-            Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().Where(sheet => sheet.Name == position.SheetName).FirstOrDefault();
+            Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().FirstOrDefault(sheet => sheet.Name == position.SheetName);
             if (theSheet == null)
             {
                 throw new SheetNotFoundException(position.SheetName); 
             }
             WorksheetPart wsPart = (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
-            Cell theCell = wsPart.Worksheet.Descendants<Cell>().Where(c => c.CellReference == position.AddressName).FirstOrDefault();
+            Cell theCell = wsPart.Worksheet.Descendants<Cell>().FirstOrDefault(c => c.CellReference == position.AddressName);
             if (theCell == null)
             {
                 throw new CellNotFoundException(position.AddressName); 
@@ -39,7 +39,7 @@ namespace MVCDepartment.Parser
             return theCell; 
         }
 
-        public List<string> getInfo(LinkedList<CellPosition> positions)
+        public List<string> GetInfo(LinkedList<CellPosition> positions)
         {
             var retValues = new List<string>(positions.Count()); 
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(filePath, false))
@@ -47,7 +47,7 @@ namespace MVCDepartment.Parser
                 WorkbookPart wbPart = document.WorkbookPart;
                 foreach (CellPosition position in positions)
                 {
-                     retValues.Add(getCell(position, wbPart).InnerText);
+                     retValues.Add(GetCell(position, wbPart).InnerText);
                 }
             }
             return retValues; 

@@ -8,7 +8,7 @@ namespace MVCDepartment.Parser
 {
     public class ParseResultSaver : IParseResultSaver<ParseResult<string>>
     {
-        public bool commit(List<ParseResult<string>> parseResults)
+        public bool Commit(List<ParseResult<string>> parseResults)
         {
             throw new NotImplementedException();
         }

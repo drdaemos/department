@@ -7,10 +7,11 @@ using MVCDepartment.Parser.Exceptions;
 
 namespace MVCDepartment.Parser
 {
-    abstract public class AbstuctParser<Pos, ResInfoType> : IParser<ParseResult<ResInfoType>> 
+    abstract public class AbstractParser<Pos, ResInfoType> : IParser<ParseResult<ResInfoType>> 
     {
         IFileReader<Pos> fileReader;
-        public AbstuctParser(IFileReader<Pos> fileReader)
+
+        protected AbstractParser(IFileReader<Pos> fileReader)
         {
             if (fileReader == null)
             {
@@ -21,13 +22,13 @@ namespace MVCDepartment.Parser
             resultsInfo = new LinkedList<ResInfoType>(); 
         }
 
-        public string DefultVal 
+        public string DefaultVal 
         {
             get
             {
-                if (DefultVal != null) 
+                if (DefaultVal != null) 
                 { 
-                    return DefultVal; 
+                    return DefaultVal; 
                 }
                 else 
                 { 
@@ -36,22 +37,22 @@ namespace MVCDepartment.Parser
             }
             set 
             {
-                DefultVal = value; 
+                DefaultVal = value; 
             } 
         }
 
         LinkedList<Pos> positions;
         LinkedList<ResInfoType> resultsInfo;
 
-        public void addQuerry(Pos position, ResInfoType resultInfo)
+        public void AddQuery(Pos position, ResInfoType resultInfo)
         {
             positions.AddLast(position);
             resultsInfo.AddLast(resultInfo); 
         }
 
-        public List<ParseResult<ResInfoType>> getParseResults()
+        public List<ParseResult<ResInfoType>> GetParseResults()
         {
-            List<string> readResult = fileReader.getInfo(positions);
+            List<string> readResult = fileReader.GetInfo(positions);
             var retList = new List<ParseResult<ResInfoType>>(resultsInfo.Count);
             var index = resultsInfo.First; 
             foreach (string result in readResult)

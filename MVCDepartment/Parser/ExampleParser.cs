@@ -6,12 +6,12 @@ using MVCDepartment.Parser;
 
 namespace MVCDepartment.Parser
 {
-    public class ExampleParser : AbstuctParser<CellPosition, string>
+    public class ExampleParser : AbstractParser<CellPosition, string>
     {
         public ExampleParser(IFileReader<CellPosition> fileReader) : base(fileReader)
         {
-            base.addQuerry(new CellPosition("План", "R10C7"), "философия");
-            base.addQuerry(new CellPosition("План", "R6C7"), "Иностранный язык"); 
+            AddQuery(new CellPosition("План", "R10C7"), "философия");
+            AddQuery(new CellPosition("План", "R6C7"), "Иностранный язык"); 
         }
     }
 
