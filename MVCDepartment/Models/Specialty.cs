@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCDepartment.Models
 {
@@ -23,12 +24,15 @@ namespace MVCDepartment.Models
         }
 
         [ScaffoldColumn(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
          
         [DisplayName("Шифр")]
+        [Required]
         public string GlobalId { get; set; }
 
-        [DisplayName("Название")]
+        [DisplayName("Специальность")]
+        [Required]
         public string Name { get; set; }
     
         public virtual Plan Plan { get; set; }

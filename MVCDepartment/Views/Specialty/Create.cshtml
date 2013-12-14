@@ -1,0 +1,72 @@
+﻿@model MVCDepartment.Models.Specialty
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Specialty</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GlobalId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GlobalId)
+            @Html.ValidationMessageFor(model => model.GlobalId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div> 
+        
+        <input id="fileInput" type="file">
+        <input type="button" value="Загрузить и прикрепить план" id="uploader" />
+            @Html.Hidden("PlanId", null)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+      
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('uploader').onclick = function (e) {
+                var formdata = new FormData(); 
+                var fileInput = document.getElementById('fileInput');
+                formdata.append(fileInput.files[0].name, fileInput.files[0]);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/Specialty/UploadPlan');
+                xhr.send(formdata);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.isUploaded) {
+                            document.getElementById('uploader').type = 'text';
+                            document.getElementById('PlanId').value = response.planId;
+                            document.getElementById('uploader').type = 'hidden';
+                            document.getElementById('fileInput').type = 'hidden';
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+</script>
+}

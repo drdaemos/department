@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace MVCDepartment.Models
 {
     using System;
@@ -14,6 +16,7 @@ namespace MVCDepartment.Models
     
     public partial class ScheduleWeek
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int Lectures { get; set; }
         public int Labs { get; set; }

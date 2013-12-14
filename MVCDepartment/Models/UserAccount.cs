@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCDepartment.Models
 {
@@ -23,6 +24,7 @@ namespace MVCDepartment.Models
         }
 
         [ScaffoldColumn(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [DisplayName("Èìÿ")]

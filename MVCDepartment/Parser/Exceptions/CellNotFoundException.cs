@@ -11,5 +11,13 @@ namespace MVCDepartment.Parser.Exceptions
             : base(cellName)
         {
         }
+<<<<<<< HEAD
+=======
+
+        public CellNotFoundException()
+            : base()
+        {
+        }
+>>>>>>> b42533f517128efb308bbb43b3de66a163c257f5
     }
 }

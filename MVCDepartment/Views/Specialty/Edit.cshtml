@@ -1,0 +1,43 @@
+﻿@model MVCDepartment.Models.Specialty
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Specialty</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GlobalId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GlobalId)
+            @Html.ValidationMessageFor(model => model.GlobalId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

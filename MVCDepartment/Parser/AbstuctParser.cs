@@ -52,8 +52,21 @@ namespace MVCDepartment.Parser
         public List<ParseResult<ResInfoType>> getParseResults()
         {
             List<string> readResult;
+<<<<<<< HEAD
             readResult = fileReader.getInfo(positions);
             var retList = new List<ParseResult<ResInfoType>>(readResult.Count);
+=======
+            try
+            {
+                readResult = fileReader.getInfo(positions);
+            }
+            catch (Exception ex)
+            {
+                throw new fileReaderException(ex.Message, ex); 
+            }
+            
+            List<ParseResult<ResInfoType>> retList = new List<ParseResult<ResInfoType>>(readResult.Count);
+>>>>>>> b42533f517128efb308bbb43b3de66a163c257f5
             var index = resultsInfo.First; 
             foreach (string result in readResult)
             {
