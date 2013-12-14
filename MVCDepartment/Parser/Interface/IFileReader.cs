@@ -8,6 +8,6 @@ namespace MVCDepartment.Parser
 {
     public interface IFileReader<T>
     {
-        List<string> getInfo(LinkedList<T> positions); 
+        List<string> GetInfo(LinkedList<T> positions); 
     }
 }
