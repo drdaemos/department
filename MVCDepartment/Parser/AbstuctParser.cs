@@ -10,7 +10,8 @@ namespace MVCDepartment.Parser
     abstract public class AbstuctParser<Pos, ResInfoType> : IParser<ParseResult<ResInfoType>> 
     {
         IFileReader<Pos> fileReader;
-        public AbstuctParser(IFileReader<Pos> fileReader)
+
+        protected AbstuctParser(IFileReader<Pos> fileReader)
         {
             if (fileReader == null)
             {
@@ -29,11 +30,9 @@ namespace MVCDepartment.Parser
                 { 
                     return DefultVal; 
                 }
-                else 
-                { 
-                    return ""; 
-                }
+                return ""; 
             }
+            
             set 
             {
                 DefultVal = value; 

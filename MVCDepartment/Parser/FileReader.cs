@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.IO;
-using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
 using MVCDepartment.Parser.Exceptions; 
@@ -13,7 +10,7 @@ namespace MVCDepartment.Parser
 {
     public class FileReader : IFileReader<CellPosition>
     {
-        public string filePath;
+        private string filePath;
         public FileReader(string filePath)
         {
             if (!File.Exists(filePath))
@@ -45,10 +42,7 @@ namespace MVCDepartment.Parser
             using (SpreadsheetDocument document = SpreadsheetDocument.Open(filePath, false))
             {
                 WorkbookPart wbPart = document.WorkbookPart;
-                foreach (CellPosition position in positions)
-                {
-                     retValues.Add(getCell(position, wbPart).InnerText);
-                }
+                retValues.AddRange(positions.Select(position => getCell(position, wbPart).InnerText));
             }
             return retValues; 
         }
