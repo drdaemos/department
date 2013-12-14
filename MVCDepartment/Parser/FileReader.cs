@@ -6,6 +6,7 @@ using System.IO;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using MVCDepartment.Parser.Exceptions; 
 
 
 namespace MVCDepartment.Parser
@@ -27,13 +28,13 @@ namespace MVCDepartment.Parser
             Sheet theSheet = wbPart.Workbook.Descendants<Sheet>().Where(sheet => sheet.Name == position.SheetName).FirstOrDefault();
             if (theSheet == null)
             {
-                throw new NullReferenceException("sheet not found"); 
+                throw new SheetNotFoundException(position.SheetName); 
             }
             WorksheetPart wsPart = (WorksheetPart)(wbPart.GetPartById(theSheet.Id));
             Cell theCell = wsPart.Worksheet.Descendants<Cell>().Where(c => c.CellReference == position.AddressName).FirstOrDefault();
             if (theCell == null)
             {
-                throw new Exception("Cell not found"); 
+                throw new CellNotFoundException(position.AddressName); 
             }
             return theCell; 
         }
@@ -46,7 +47,7 @@ namespace MVCDepartment.Parser
                 WorkbookPart wbPart = document.WorkbookPart;
                 foreach (CellPosition position in positions)
                 {
-                    retValues.Add(getCell(position, wbPart).InnerText);
+                     retValues.Add(getCell(position, wbPart).InnerText);
                 }
             }
             return retValues; 

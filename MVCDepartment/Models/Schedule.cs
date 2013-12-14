@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Web.Mvc;
 
 namespace MVCDepartment.Models
@@ -31,6 +32,7 @@ namespace MVCDepartment.Models
         }
 
         [ScaffoldColumn(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Нужно указать семестр")]

@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCDepartment.Models
 {
@@ -16,10 +17,9 @@ namespace MVCDepartment.Models
     
     public partial class Plan
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string File { get; set; }
 
-        [Required]
-        public virtual Specialty Specialty { get; set; }
     }
 }

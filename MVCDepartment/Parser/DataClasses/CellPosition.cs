@@ -15,14 +15,11 @@ namespace MVCDepartment.Parser
             }
             set
             {
-                if (value != null)
+                if (value == null)
                 {
+                    throw new NullReferenceException("sheetName cannot be null");
+                }
                     SheetName = value;
-                }
-                else
-                {
-                    throw new NullReferenceException("sheetName cannot be null"); 
-                }
             }
         }
         public string AddressName

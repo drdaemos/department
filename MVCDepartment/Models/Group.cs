@@ -9,6 +9,7 @@
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MVCDepartment.Models
 {
@@ -18,6 +19,7 @@ namespace MVCDepartment.Models
     public partial class Group
     {
         [ScaffoldColumn(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [DisplayName("Øטפנ")]
         public string Name { get; set; }
