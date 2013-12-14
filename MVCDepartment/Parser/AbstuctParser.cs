@@ -12,14 +12,11 @@ namespace MVCDepartment.Parser
         IFileReader<Pos> fileReader;
         public AbstuctParser(IFileReader<Pos> fileReader)
         {
-            if (fileReader != null)
+            if (fileReader == null)
             {
-                this.fileReader = fileReader;
+                throw new ArgumentNullException("fileReader cannot be null");
             }
-            else
-            {
-                throw new NullReferenceException("fileReader cannot be null");
-            }
+            this.fileReader = fileReader;
             positions = new LinkedList<Pos>(); 
             resultsInfo = new LinkedList<ResInfoType>(); 
         }
@@ -55,31 +52,8 @@ namespace MVCDepartment.Parser
         public List<ParseResult<ResInfoType>> getParseResults()
         {
             List<string> readResult;
-            try
-            {
-                readResult = fileReader.getInfo(positions);
-            }
-            catch (Exception ex)
-            {
-                throw new fileReaderException(ex.Message, ex); 
-            }
-            
-            /* catch
-            {
-                if (positions != null)
-                {
-                    readResult = new List<string>(positions.Count);
-                }
-                else
-                {
-                    readResult = new List<string>(0); 
-                }
-                for (int i = 0; i < readResult.Count; i++)
-                {
-                    readResult.Add(DefultVal);
-                }
-            } */
-            List<ParseResult<ResInfoType>> retList = new List<ParseResult<ResInfoType>>(readResult.Count);
+            readResult = fileReader.getInfo(positions);
+            var retList = new List<ParseResult<ResInfoType>>(readResult.Count);
             var index = resultsInfo.First; 
             foreach (string result in readResult)
             {
@@ -88,9 +62,7 @@ namespace MVCDepartment.Parser
                     retList.Add(new ParseResult<ResInfoType>(result, index.Value));
                     index = index.Next; 
                 }
-                
             }
-
             return retList; 
         }
     }

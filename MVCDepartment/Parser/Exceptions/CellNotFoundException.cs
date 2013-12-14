@@ -11,10 +11,5 @@ namespace MVCDepartment.Parser.Exceptions
             : base(cellName)
         {
         }
-
-        public CellNotFoundException()
-            : base()
-        {
-        }
     }
 }

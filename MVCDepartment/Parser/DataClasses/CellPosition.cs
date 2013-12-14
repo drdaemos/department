@@ -15,14 +15,11 @@ namespace MVCDepartment.Parser
             }
             set
             {
-                if (value != null)
-                {
-                    SheetName = value;
-                }
-                else
+                if (value == null)
                 {
                     throw new NullReferenceException("sheetName cannot be null"); 
                 }
+                SheetName = value;
             }
         }
         public string AddressName
@@ -33,14 +30,11 @@ namespace MVCDepartment.Parser
             }
             set
             {
-                if (value != null)
-                {
-                    AddressName = value;
-                }
-                else
+                if (value == null)
                 {
                     throw new NullReferenceException("adressName cannot be null");
                 }
+                AddressName = value;
             }
         }
         public CellPosition(string sheetName, string addressName)
